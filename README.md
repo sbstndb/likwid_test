@@ -134,6 +134,7 @@ Region add_loop_unrolled8, Group 1: BRANCH
 | Branch misprediction ratio |       0.0584 |
 |   Instructions per branch  |       8.6429 |
 +----------------------------+--------------+
+```
 
 As you can see, while there is a for loop for 102k elements,
 - the first loop has 26k branches
@@ -143,7 +144,6 @@ As you can see, while there is a for loop for 102k elements,
 This is because my compiler unroll the loop by a factor of 4 for the two first cases. The last case is way too unrolled : even the compiler don't want to go that deep. 
 Anyway, this LIKWID tool helps you identify bad branch or branch-miss regions. 
 
-```
 
 
 
