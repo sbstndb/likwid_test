@@ -135,6 +135,14 @@ Region add_loop_unrolled8, Group 1: BRANCH
 |   Instructions per branch  |       8.6429 |
 +----------------------------+--------------+
 
+As you can see, while there is a for loop for 102k elements,
+- the first loop has 26k branches
+- the second loop (unrolled 2) has 26k branches
+- the third loop (unrolled 8) has 14k branches
+
+This is because my compiler unroll the loop by a factor of 4 for the two first cases. The last case is way too unrolled : even the compiler don't want to go that deep. 
+Anyway, this LIKWID tool helps you identify bad branch or branch-miss regions. 
+
 ```
 
 
