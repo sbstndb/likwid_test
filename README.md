@@ -29,7 +29,7 @@ likwid-perfctr -C 1 -g FLOPS_DP -m ./test_likwid_markers
 ```
 
 # Result
-Here is the output of the command `likwid-perfctr -C 1 -g FLOPS_DP -m ./test_likwid_markers`. It gives `FLOPS_DP` results for each region. 
+Here is the output of the command `likwid-perfctr -C 2 -g BRANCH -m ./test_likwid_markers`. It gives `FLOPS_DP` results for each region. 
 
 ```bash
 --------------------------------------------------------------------------------
@@ -39,36 +39,7 @@ CPU clock:	3.79 GHz
 --------------------------------------------------------------------------------
 Sum: 2.1504e+06
 --------------------------------------------------------------------------------
-Region add_loop, Group 1: FLOPS_DP
-+-------------------+------------+
-|    Region Info    | HWThread 1 |
-+-------------------+------------+
-| RDTSC Runtime [s] |   0.000026 |
-|     call count    |          1 |
-+-------------------+------------+
-
-+---------------------------+---------+-----------------+
-|           Event           | Counter |    HWThread 1   |
-+---------------------------+---------+-----------------+
-|      ACTUAL_CPU_CLOCK     |  FIXC1  |               0 |
-|       MAX_CPU_CLOCK       |  FIXC2  |               0 |
-|    RETIRED_INSTRUCTIONS   |   PMC0  |          157538 |
-|    CPU_CLOCKS_UNHALTED    |   PMC1  |         2040080 |
-| RETIRED_SSE_AVX_FLOPS_ALL |   PMC2  |          102410 |
-|           MERGE           |   PMC3  | 562950000000000 |
-+---------------------------+---------+-----------------+
-
-+----------------------+--------------+
-|        Metric        |  HWThread 1  |
-+----------------------+--------------+
-|  Runtime (RDTSC) [s] | 2.609904e-05 |
-| Runtime unhalted [s] |            0 |
-|      Clock [MHz]     |       -      |
-|          CPI         |      12.9498 |
-|     DP [MFLOP/s]     |    3923.8991 |
-+----------------------+--------------+
-
-Region add_loop_unrolled, Group 1: FLOPS_DP
+Region add_loop, Group 1: BRANCH
 +-------------------+------------+
 |    Region Info    | HWThread 1 |
 +-------------------+------------+
@@ -76,56 +47,93 @@ Region add_loop_unrolled, Group 1: FLOPS_DP
 |     call count    |          1 |
 +-------------------+------------+
 
++---------------------------+---------+------------+
+|           Event           | Counter | HWThread 1 |
++---------------------------+---------+------------+
+|      ACTUAL_CPU_CLOCK     |  FIXC1  |          0 |
+|       MAX_CPU_CLOCK       |  FIXC2  |          0 |
+|    RETIRED_INSTRUCTIONS   |   PMC0  |     157527 |
+|    CPU_CLOCKS_UNHALTED    |   PMC1  |     111323 |
+|    RETIRED_BRANCH_INSTR   |   PMC2  |      26402 |
+| RETIRED_MISP_BRANCH_INSTR |   PMC3  |       1072 |
++---------------------------+---------+------------+
 
-+---------------------------+---------+-----------------+
-|           Event           | Counter |    HWThread 1   |
-+---------------------------+---------+-----------------+
-|      ACTUAL_CPU_CLOCK     |  FIXC1  |               0 |
-|       MAX_CPU_CLOCK       |  FIXC2  |               0 |
-|    RETIRED_INSTRUCTIONS   |   PMC0  |          159040 |
-|    CPU_CLOCKS_UNHALTED    |   PMC1  |         1794032 |
-| RETIRED_SSE_AVX_FLOPS_ALL |   PMC2  |          102410 |
-|           MERGE           |   PMC3  | 562950000000000 |
-+---------------------------+---------+-----------------+
++----------------------------+--------------+
+|           Metric           |  HWThread 1  |
++----------------------------+--------------+
+|     Runtime (RDTSC) [s]    | 2.927494e-05 |
+|    Runtime unhalted [s]    |            0 |
+|         Clock [MHz]        |       -      |
+|             CPI            |       0.7067 |
+|         Branch rate        |       0.1676 |
+|  Branch misprediction rate |       0.0068 |
+| Branch misprediction ratio |       0.0406 |
+|   Instructions per branch  |       5.9665 |
++----------------------------+--------------+
 
-+----------------------+--------------+
-|        Metric        |  HWThread 1  |
-+----------------------+--------------+
-|  Runtime (RDTSC) [s] | 2.299358e-05 |
-| Runtime unhalted [s] |            0 |
-|      Clock [MHz]     |       -      |
-|          CPI         |      11.2804 |
-|     DP [MFLOP/s]     |    4453.8519 |
-+----------------------+--------------+
-
-Region add_loop_unrolled8, Group 1: FLOPS_DP
+Region add_loop_unrolled, Group 1: BRANCH
 +-------------------+------------+
 |    Region Info    | HWThread 1 |
 +-------------------+------------+
-| RDTSC Runtime [s] |   0.000025 |
+| RDTSC Runtime [s] |   0.000026 |
 |     call count    |          1 |
 +-------------------+------------+
 
-+---------------------------+---------+-----------------+
-|           Event           | Counter |    HWThread 1   |
-+---------------------------+---------+-----------------+
-|      ACTUAL_CPU_CLOCK     |  FIXC1  |               0 |
-|       MAX_CPU_CLOCK       |  FIXC2  |               0 |
-|    RETIRED_INSTRUCTIONS   |   PMC0  |          120742 |
-|    CPU_CLOCKS_UNHALTED    |   PMC1  |         1840016 |
-| RETIRED_SSE_AVX_FLOPS_ALL |   PMC2  |          102410 |
-|           MERGE           |   PMC3  | 562950000000000 |
-+---------------------------+---------+-----------------+
++---------------------------+---------+------------+
+|           Event           | Counter | HWThread 1 |
++---------------------------+---------+------------+
+|      ACTUAL_CPU_CLOCK     |  FIXC1  |          0 |
+|       MAX_CPU_CLOCK       |  FIXC2  |          0 |
+|    RETIRED_INSTRUCTIONS   |   PMC0  |     159040 |
+|    CPU_CLOCKS_UNHALTED    |   PMC1  |     108462 |
+|    RETIRED_BRANCH_INSTR   |   PMC2  |      26745 |
+| RETIRED_MISP_BRANCH_INSTR |   PMC3  |        848 |
++---------------------------+---------+------------+
 
-+----------------------+--------------+
-|        Metric        |  HWThread 1  |
-+----------------------+--------------+
-|  Runtime (RDTSC) [s] | 2.472686e-05 |
-| Runtime unhalted [s] |            0 |
-|      Clock [MHz]     |       -      |
-|          CPI         |      15.2392 |
-|     DP [MFLOP/s]     |    4141.6500 |
-+----------------------+--------------+
++----------------------------+--------------+
+|           Metric           |  HWThread 1  |
++----------------------------+--------------+
+|     Runtime (RDTSC) [s]    | 2.579842e-05 |
+|    Runtime unhalted [s]    |            0 |
+|         Clock [MHz]        |       -      |
+|             CPI            |       0.6820 |
+|         Branch rate        |       0.1682 |
+|  Branch misprediction rate |       0.0053 |
+| Branch misprediction ratio |       0.0317 |
+|   Instructions per branch  |       5.9465 |
++----------------------------+--------------+
+
+Region add_loop_unrolled8, Group 1: BRANCH
++-------------------+------------+
+|    Region Info    | HWThread 1 |
++-------------------+------------+
+| RDTSC Runtime [s] |   0.000024 |
+|     call count    |          1 |
++-------------------+------------+
+
++---------------------------+---------+------------+
+|           Event           | Counter | HWThread 1 |
++---------------------------+---------+------------+
+|      ACTUAL_CPU_CLOCK     |  FIXC1  |          0 |
+|       MAX_CPU_CLOCK       |  FIXC2  |          0 |
+|    RETIRED_INSTRUCTIONS   |   PMC0  |     120689 |
+|    CPU_CLOCKS_UNHALTED    |   PMC1  |     109243 |
+|    RETIRED_BRANCH_INSTR   |   PMC2  |      13964 |
+| RETIRED_MISP_BRANCH_INSTR |   PMC3  |        816 |
++---------------------------+---------+------------+
+
++----------------------------+--------------+
+|           Metric           |  HWThread 1  |
++----------------------------+--------------+
+|     Runtime (RDTSC) [s]    | 2.360430e-05 |
+|    Runtime unhalted [s]    |            0 |
+|         Clock [MHz]        |       -      |
+|             CPI            |       0.9052 |
+|         Branch rate        |       0.1157 |
+|  Branch misprediction rate |       0.0068 |
+| Branch misprediction ratio |       0.0584 |
+|   Instructions per branch  |       8.6429 |
++----------------------------+--------------+
 
 ```
 
