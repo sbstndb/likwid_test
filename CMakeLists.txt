@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 project(TestLIKWIDMarkers)
 
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native -mtune=native -ftree-vectorize")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native -mtune=native -ftree-vectorize -g")
 
 # Trouver les bibliothèques LIKWID
 find_package(Likwid REQUIRED)
